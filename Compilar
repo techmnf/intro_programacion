@@ -1,0 +1,8 @@
+gcc nom_archivo.c -o nom_ejecutable
+Pasos
+1. Editar archivos
+2. Guardar los cambios
+3. Compilar
+4. Ejecutar./nom_ejecutable
+
+Tener en cuenta que msg<-"hola" se traduce strcpy(msg, "Hola")
