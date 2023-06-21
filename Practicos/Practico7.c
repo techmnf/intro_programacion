@@ -16,34 +16,33 @@ int esCapicua(TData frase);
 
 int main() {
   cargarPalabra(&pal);
+  
   if(esCapicua(pal) == 1) {
     strcpy(msg, "Esta palabra es palindroma\n");
   }
   else {
     strcpy(msg, "Esta palabra no es palindroma\n");
   }
+  
   printf("%s", msg);
 }
 
 void cargarPalabra(TData *frase) {
-  /*char palabra[Max];
-  int i;
+  char palabra[Max];
   
-  scanf("%s", &palabra);
+  printf("Ingrese la palabra (o frase sin espacios en blanco y en minuscula): ");
+  scanf("%s", palabra);
+  printf("\n");
+  
   frase->cant = strlen(palabra);
-  for(i = 0; i < frase->cant; i++) {
+  for(int i = 0; i <= frase->cant; i++) {
     frase->a[i] = palabra[i];
-  }*/
-  
-  scanf("%i", &(frase->cant));
-  for(int i = 0; i < frase->cant; i++) {
-    scanf("%c", &(frase->a[i]));
   }
 }
 
 int esCapicua(TData frase) {
   int i = 0;
-  while((i < frase.cant) && (frase.a[i] == frase.a[frase.cant-i-1])) {
+  while((i <= frase.cant) && (frase.a[i] == frase.a[frase.cant-i]) == 0) {
     i++;
   }
   
@@ -54,4 +53,3 @@ int esCapicua(TData frase) {
     return 0;
   }
 }
-    
