@@ -46,7 +46,7 @@ int esCapicua(TData frase) {
     i++;
   }
   
-  if(i > frase.cant/2) {
+  if(i >= frase.cant/2) {
     return 1;
   }
   else {
