@@ -1,60 +1,69 @@
-#include<stdio.h>
-#include<stdlib.h>
+include<stdio.h>
+#include<stdbool.h>
+#include<string.h>
+#define max 20
 
-typedef struct TNodo1 {
-  int info;
-  struct TNodo1 *next;
-} TNodo;
+typedef struct {
+  char ape[100];
+  int dni;
+} TPersona;
 
-TNodo *q;
-TNodo *r;
-TNodo *s;
-TNodo *t;
-TNodo *p;
+typedef struct {
+  TPersona pers[max];
+  int cant;
+} TData;
+
+TData data;
+int documento;
+
+void NombreDoc(TData com, int doc);
+void Cargar(TData *com);
 
 int main() {
-  q = (TNodo *) malloc(sizeof(TNodo));
-  q->info = 14;
-  q->next = NULL;
-  
-  s = (TNodo *) malloc(sizeof(TNodo));
-  s->info = 25;
-  s->next = q;
-  q = s;
-  
-  s = (TNodo *) malloc(sizeof(TNodo));
-  s->info = 20;
-  s->next = q;
-  q = s;
-  
-  s = (TNodo *) malloc(sizeof(TNodo));
-  s->info = 11;
-  s->next = q;
-  q = s;
-  
-  
-  r = q;
-  r = r->next;
-  t = r->next;
-  
-  s = (TNodo *) malloc(sizeof(TNodo));
-  s->info = 3;
-  s->next = r->next;
-  r->next = s;
-  p = s;
-  
-  t->info = 29;
-  printf("%i", t->info);
-  printf("\n");
-  
-  
-  r = q;
-  while(r != NULL) {
-    printf("%i ", r->info);
+  Cargar(&data);
+  printf("Ingrese dni a buscar: ");
 
-    r = r->next;
-  }
+  int documento;
+  scanf("%d", &documento);
+  NombreDoc(data, documento);
+  
   printf("\n");
   
   return 0;
+}
+
+void NombreDoc(TData com, int doc) {
+  int i = 0;
+  char msg[100];
+  bool dniEncontrado = false;
+  
+  do {
+    if(com.pers[i].dni == doc) {
+      strcpy(msg, com.pers[i].ape);
+      dniEncontrado = true;
+    }
+    i++;
+  } while(i < com.cant && !dniEncontrado);
+  
+  if(!dniEncontrado) {
+    strcpy(msg, "No se encontro ninguna persona con ese DNI");
+  }
+  
+  printf("%s", msg);
+}
+
+void Cargar(TData *com) {
+  printf("Ingrese cantidad de registros a cargar: ");
+  scanf("%d", &com->cant);
+
+  printf("\n Ingrese los datos de cada persona\n");
+  for(int i = 0; i < com->cant; i++) {
+    printf("Personal %d \n", i+1);
+    
+    printf("\t Apellido: ");
+    scanf("%s", com->pers[i].ape);
+    
+    printf("\t DNI: ");
+    scanf("%d", &com->pers[i].dni);
+  }
 }
