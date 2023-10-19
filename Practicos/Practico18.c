@@ -149,7 +149,7 @@ void QuickSort(TData *c, int izq, int der) {
       i++;
     }
     
-    while((strcmp(c->b[j], p) < 0) && (j > izq)) {
+    while((strcmp(c->b[j], p) > 0) && (j > izq)) {
       j--;
     }
     
