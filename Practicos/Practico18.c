@@ -127,12 +127,11 @@ void Insercion(TData *c) {
     strcpy(aux, c->b[i]);
     int j = i -1;
     
-    while((j > 0) && (strcmp(c->b[j], aux) > 0)) {
+    while((j >= 0) && (strcmp(c->b[j], aux) > 0)) {
       strcpy(c->b[j+1], c->b[j]);
       j--;
     }
     strcpy(c->b[j+1], aux);
-    //MostrarArreglo(*c);
     i++;
   }
 }
